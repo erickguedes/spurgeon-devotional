@@ -1,0 +1,4 @@
+state/*.tmp
+_raw_*
+_test_payload.json
+__pycache__/

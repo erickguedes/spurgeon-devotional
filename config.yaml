@@ -1,0 +1,8 @@
+default_model: opencode-go/glm-5.3-flash
+email_to: erick.guedes@gmail.com
+email_from: erick.guedes@gmail.com
+language: pt-BR
+delivery_hour: "08:00"
+timezone: America/Sao_Paulo
+max_words: 620
+repo: spurgeon-devotional

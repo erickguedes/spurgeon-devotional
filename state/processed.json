@@ -1,0 +1,22 @@
+{
+  "history": [
+    {
+      "at": "2026-10-04T14:42:47",
+      "action": "sent",
+      "sermon_id": "0001",
+      "message_id": "1a1075e0f0f21488"
+    }
+  ],
+  "last_run": "2026-10-04T14:42:47",
+  "processed": [
+    {
+      "sermon_id": "0001",
+      "sermon_file": "0001-the-immutability-of-god.md",
+      "processed_at": "2026-10-04T14:42:47",
+      "devotional_id": "2026-10-04",
+      "status": "sent",
+      "subject": "Devocional Diario - Deus não muda, mesmo quando tudo muda",
+      "gmail_message_id": "1a1075e0f0f21488"
+    }
+  ]
+}
