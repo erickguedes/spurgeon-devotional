@@ -77,14 +77,14 @@ def send_gmail(subject, html_body, text_body, to=None):
         client_id=tok.get("client_id"), client_secret=tok.get("client_secret"), scopes=tok.get("scopes"))
     if not creds.valid: creds.refresh(Request())
     svc = build("gmail", "v1", credentials=creds)
-    boundary = "==bnd_devocional=="
-    mime = (f"From: Devocional Diario <{_email_to()}>\n"
-            f"To: {to}\nSubject: {subject}\nMIME-Version: 1.0\n"
-            f'Content-Type: multipart/alternative; boundary="{boundary}"\n\n'
-            f"--{boundary}\nContent-Type: text/plain; charset=UTF-8\n\n{text_body}\n"
-            f"--{boundary}\nContent-Type: text/html; charset=UTF-8\n\n{html_body}\n"
-            f"--{boundary}--\n")
-    raw = base64.urlsafe_b64encode(mime.encode()).decode()
+    from email.message import EmailMessage
+    em = EmailMessage()
+    em["From"] = f"Devocional Diario <{_email_to()}>"
+    em["To"] = to
+    em["Subject"] = subject
+    em.set_content(text_body)
+    em.add_alternative(html_body, subtype="html")
+    raw = base64.urlsafe_b64encode(em.as_bytes()).decode()
     res = svc.users().messages().send(userId="me", body={"raw": raw}).execute()
     return res.get("id")
 
