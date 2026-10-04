@@ -15,17 +15,21 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import load_state, save_state, load_sermons_index, save_devotional, devotional_to_markdown
 
 EMAIL_TO = None
-def _email_to():
+def _recipients():
+    """Destinatários: 'email_to' + 'email_cc'/extras em config.yaml (um por linha 'email_to' ou CSV)."""
     global EMAIL_TO
     if EMAIL_TO is None:
-        cfg = {}
         cfgp = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config.yaml")
+        tos = []
         if os.path.exists(cfgp):
             for line in open(cfgp, encoding="utf-8"):
                 if line.startswith("email_to:"):
-                    EMAIL_TO = line.split(":", 1)[1].strip()
-        EMAIL_TO = EMAIL_TO or os.environ.get("DEVOTIONAL_EMAIL_TO", "erick.guedes@gmail.com")
+                    tos += [x.strip() for x in line.split(":", 1)[1].strip().split(",") if x.strip()]
+        EMAIL_TO = ",".join(tos) or os.environ.get("DEVOTIONAL_EMAIL_TO", "erick.guedes@gmail.com")
     return EMAIL_TO
+
+def _email_to():
+    return _recipients().split(",")[0]
 
 REQUIRED = ["titulo", "texto_biblico", "reflexao", "para_refletir", "aplicacao_hoje", "oracao"]
 
@@ -66,7 +70,7 @@ def build_text(dev):
     return "\n".join(lines)
 
 def send_gmail(subject, html_body, text_body, to=None):
-    to = to or _email_to()
+    to = to or _recipients()
     from googleapiclient.discovery import build
     token_path = "/opt/data/google_token.json"
     with open(token_path) as f: tok = json.load(f)

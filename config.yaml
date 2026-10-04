@@ -1,5 +1,5 @@
 default_model: opencode-go/glm-5.3-flash
-email_to: erick.guedes@gmail.com
+email_to: erick.guedes@gmail.com, rperez.adriana@gmail.com
 email_from: erick.guedes@gmail.com
 language: pt-BR
 delivery_hour: "08:00"
