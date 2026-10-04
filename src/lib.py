@@ -93,7 +93,9 @@ def devotional_to_markdown(dev: dict, entry: dict) -> str:
 
 def save_devotional(entry: dict, dev: dict) -> str:
     d_iso = date.today().isoformat()
-    path = devotional_path_for(d_iso)
+    y, m = d_iso.split("-")[:2]
+    # sufixo com o id do sermao: permite mais de um devocional no mesmo dia
+    path = os.path.join(DEVOTIONALS_DIR, y, m, f"{d_iso}-{entry['id']}.md")
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(devotional_to_markdown(dev, entry))

@@ -3,3 +3,5 @@ _raw_*
 _test_payload.json
 __pycache__/
 state/_payload.json
+*.mp3
+*.ogg
