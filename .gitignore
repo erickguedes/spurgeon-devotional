@@ -2,3 +2,4 @@ state/*.tmp
 _raw_*
 _test_payload.json
 __pycache__/
+state/_payload.json
