@@ -16,16 +16,24 @@ from lib import load_state, save_state, load_sermons_index, save_devotional, dev
 
 EMAIL_TO = None
 def _recipients():
-    """Destinatários: 'email_to' + 'email_cc'/extras em config.yaml (um por linha 'email_to' ou CSV)."""
+    """Destinatários: env var DEVOTIONAL_EMAIL_TO (CSV) tem prioridade;
+    senão lê 'email_to:' do config.yaml fora do git; default hardcoded."""
     global EMAIL_TO
     if EMAIL_TO is None:
+        env = os.environ.get("DEVOTIONAL_EMAIL_TO", "").strip()
+        if env:
+            EMAIL_TO = env
+            return EMAIL_TO
         cfgp = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config.yaml")
         tos = []
-        if os.path.exists(cfgp):
-            for line in open(cfgp, encoding="utf-8"):
-                if line.startswith("email_to:"):
-                    tos += [x.strip() for x in line.split(":", 1)[1].strip().split(",") if x.strip()]
-        EMAIL_TO = ",".join(tos) or os.environ.get("DEVOTIONAL_EMAIL_TO", "erick.guedes@gmail.com")
+        cfgp_local = cfgp + ".local"   # opcional: config.yaml.local (fora do git) prevalece sobre o commitado
+        for path in (cfgp_local, cfgp):
+            if os.path.exists(path):
+                for line in open(path, encoding="utf-8"):
+                    if line.startswith("email_to:"):
+                        tos += [x.strip() for x in line.split(":", 1)[1].strip().split(",") if x.strip()]
+                break
+        EMAIL_TO = ",".join(tos) or "erick.guedes@gmail.com"
     return EMAIL_TO
 
 def _email_to():

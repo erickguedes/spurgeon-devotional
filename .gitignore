@@ -5,3 +5,5 @@ __pycache__/
 state/_payload.json
 *.mp3
 *.ogg
+config.yaml.local
+*.local
