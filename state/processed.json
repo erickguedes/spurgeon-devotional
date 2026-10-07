@@ -17,9 +17,27 @@
       "action": "sent",
       "sermon_id": "0003",
       "message_id": "1a1079724756a987"
+    },
+    {
+      "at": "2026-10-05T18:45:44",
+      "action": "sent",
+      "sermon_id": "0004",
+      "message_id": "1a10d62d9594be64"
+    },
+    {
+      "at": "2026-10-06T10:08:34",
+      "action": "sent",
+      "sermon_id": "0005",
+      "message_id": "1a110afbb99d4079"
+    },
+    {
+      "at": "2026-10-07T10:02:14",
+      "action": "sent",
+      "sermon_id": "0006",
+      "message_id": "1a115d046db8e91f"
     }
   ],
-  "last_run": "2026-10-04T15:45:08",
+  "last_run": "2026-10-07T10:02:14",
   "processed": [
     {
       "sermon_id": "0001",
@@ -47,6 +65,33 @@
       "status": "sent",
       "subject": "Devocional Diario - Derrubado a caminho de Cristo",
       "gmail_message_id": "1a1079724756a987"
+    },
+    {
+      "sermon_id": "0004",
+      "sermon_file": "0004-a-call-to-the-unconverted.md",
+      "processed_at": "2026-10-05T18:45:44",
+      "devotional_id": "2026-10-05",
+      "status": "sent",
+      "subject": "Devocional Diario - Maldito no meu lugar",
+      "gmail_message_id": "1a10d62d9594be64"
+    },
+    {
+      "sermon_id": "0005",
+      "sermon_file": "0005-the-wicked-mans-life-funeral-and-epitaph.md",
+      "processed_at": "2026-10-06T10:08:34",
+      "devotional_id": "2026-10-06",
+      "status": "sent",
+      "subject": "Devocional Diario - Perto do santo, longe de Deus",
+      "gmail_message_id": "1a110afbb99d4079"
+    },
+    {
+      "sermon_id": "0006",
+      "sermon_file": "0006-spiritual-peace.md",
+      "processed_at": "2026-10-07T10:02:14",
+      "devotional_id": "2026-10-07",
+      "status": "sent",
+      "subject": "Devocional Diario - A paz que o mundo nem dá nem tira",
+      "gmail_message_id": "1a115d046db8e91f"
     }
   ]
 }
